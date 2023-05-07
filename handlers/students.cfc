@@ -1,6 +1,6 @@
 component extends="coldbox.system.resthandler" {
 
-	property name="studentService" inject="students@ninja";
+	property name="studentService" inject="models.students";
 	function index( event, rc, prc ){
 		prc.response.setData( studentService.obtainStudentData() );
 	}

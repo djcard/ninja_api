@@ -2,7 +2,7 @@ component accessors="true" {
 
 	property name="qb"           inject="provider:QueryBuilder@qb";
 	property name="wirebox"      inject="wirebox";
-	property name="skillService" inject="skills@ninja";
+	property name="skillService" inject="models.skills";
 	property name="hyper"        inject="HyperBuilder@Hyper";
 	property name="maxLevel"	 default="2";
 
