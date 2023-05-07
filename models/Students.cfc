@@ -4,33 +4,33 @@ component accessors="true" {
 	property name="wirebox"      inject="wirebox";
 	property name="skillService" inject="models.skills";
 	property name="hyper"        inject="HyperBuilder@Hyper";
-	property name="maxLevel"	 default="2";
+	property name="maxLevel" default="2";
 
 	function init(){
 		return this;
 	}
 
 
-/***
-* Returns the CSS class corresponding with the submitted skill level
-*
-* @value - A numeric value, typically 1-6 as of 23 Jun 2023
-**/
+	/***
+	 * Returns the CSS class corresponding with the submitted skill level
+	 *
+	 * @value - A numeric value, typically 1-6 as of 23 Jun 2023
+	 **/
 	function obtainStyle( required numeric value ){
 		return "level#value#";
 	}
 
 
 
-/***
-* Creates the array of student skill and level data needed to create the display table
-*
-* @id optional numeric student id.
-**/
+	/***
+	 * Creates the array of student skill and level data needed to create the display table
+	 *
+	 * @id optional numeric student id.
+	 **/
 	function createStudentArray( numeric id = 0 ){
 		var tableData   = [ { "contents" : createHeaderRow(), "classes" : "" } ];
 		var studentRows = createStudentRows( arguments.id );
-		return isNull( studentRows ) ? tableData :  tableData.append( studentRows, true );
+		return isNull( studentRows ) ? tableData : tableData.append( studentRows, true );
 	}
 
 
@@ -47,11 +47,11 @@ component accessors="true" {
 	}
 
 
-/***
-* Creates the top header for the skills display table. The first column should be blank and each subsequent be the name of a skill.
-*
-* @headerData - an array of structs, each must have the key `name`
-**/
+	/***
+	 * Creates the top header for the skills display table. The first column should be blank and each subsequent be the name of a skill.
+	 *
+	 * @headerData - an array of structs, each must have the key `name`
+	 **/
 	Array function createHeaderRow(){
 		var allSkills = skillService.allSkills();
 		var base      = [ { "header" : true, "contents" : "", "classes" : "" } ];
@@ -66,14 +66,14 @@ component accessors="true" {
 
 
 	/***
-	* Accepts an array of skillLevels and returns the lowest level
-	*
-	* @skillData - an array of structs, each with the key skillLevel
-	**/
-	function findStudentLevel( required array skillData = studentData, string keyName="skillLevel" ){
+	 * Accepts an array of skillLevels and returns the lowest level
+	 *
+	 * @skillData - an array of structs, each with the key skillLevel
+	 **/
+	function findStudentLevel( required array skillData = studentData, string keyName = "skillLevel" ){
 		return skillData.reduce( function( currLevel, item ){
-			return item[keyName] < currLevel ? item[keyName] : currLevel;
-		},10 );
+			return item[ keyName ] < currLevel ? item[ keyName ] : currLevel;
+		}, 10 );
 	}
 
 	/***
@@ -155,8 +155,12 @@ component accessors="true" {
 				);
 			} );
 
-			var totalLevel = findStudentLevel(studentBase.contents, "contents");
-			studentBase.contents.append({"contents":totalLevel,"header":false,"classes":obtainStyle( totalLevel )})
+			var totalLevel = findStudentLevel( studentBase.contents, "contents" );
+			studentBase.contents.append( {
+				"contents" : totalLevel,
+				"header"   : false,
+				"classes"  : obtainStyle( totalLevel )
+			} )
 			// Append the "row" to the returnMe array
 			returnMe.append( studentBase, true );
 		} );

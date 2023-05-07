@@ -22,10 +22,10 @@ component extends="coldbox.system.testing.basetestcase" {
 				testObj = getInstance( "students@ninja" );
 			} );
 			it( "Return `level` and whatever is submitted", function(){
-				expect(true).tobeFalse();
-				//var fakeVal = randRange( 1, 1000 );
-				//var testme  = testObj.obtainStyle( fakeVal );
-				//expect( testme ).tobe( "level#fakeVal#" );
+				expect( true ).tobeFalse();
+				// var fakeVal = randRange( 1, 1000 );
+				// var testme  = testObj.obtainStyle( fakeVal );
+				// expect( testme ).tobe( "level#fakeVal#" );
 			} );
 			it( "If a non-number is submitted, throw an error", function(){
 				expect( function(){

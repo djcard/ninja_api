@@ -1,6 +1,6 @@
 {
-	"name":"Ninja API",
-	"version":"0.0.0",
+    "name":"Ninja API",
+    "version":"0.0.0",
     "author":"Dan Card",
     "location":"ForgeboxStorage",
     "slug":"ninjaapi@dcar7191",
@@ -18,11 +18,9 @@
     "contributors":[],
     "ignore":[],
     "description":"",
-    "devDependencies":{
-        
-    	},
+    "devDependencies":{},
     "installPaths":{
-    	"coldbox":"coldbox/",
+        "coldbox":"coldbox/",
         "testbox":"testbox/",
         "hyper":"modules/hyper/",
         "qb":"modules/qb/",
@@ -36,11 +34,11 @@
             "URL":""
         }
     ],
-	"dependencies":{
-    	"coldbox":"^6.0.0",
+    "dependencies":{
+        "coldbox":"^6.0.0",
         "hyper":"^5.0.1",
         "qb":"^9.1.2",
-        "uime":"^0.0.4",
+        "uime":"^0.0.5",
         "testboxMockingUtils":"^0.0.1",
         "testbox":"*",
         "commandbox-dotenv":"*",
@@ -74,6 +72,4 @@
         "watchDelay":500,
         "watchPaths":"**.cfc"
     }
-
-
 }
