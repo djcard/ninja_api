@@ -8,6 +8,17 @@ component extends="coldbox.system.EventHandler" {
 		event.setView( "ninja" );
 	}
 
+	function onAppInit( event, rc, prc ){
+	}
+
+	function onRequestStart( event, rc, prc ){
+	}
+
+	function onRequestEnd( event, rc, prc ){
+	}
+
+	function onSessionStart( event, rc, prc ){
+	}
 	function onSessionEnd( event, rc, prc ){
 		var sessionScope     = event.getValue( "sessionReference" );
 		var applicationScope = event.getValue( "applicationReference" );
