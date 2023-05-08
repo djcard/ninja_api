@@ -10,7 +10,7 @@
 
 <cfoutput>
 	<div class="container">
-	<h1>Skill Levels as of #dateformat(now(),"mmmm dd, yyyy")#</h1>
+	<h1>These are the insanely high skill Levels as of #dateformat(now(),"mmmm dd, yyyy")#</h1>
 		#prc.tableTemplate.run( tableData = prc.studentData, bordered=true )#
 	</div>
 </cfoutput>
