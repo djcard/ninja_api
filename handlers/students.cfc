@@ -10,6 +10,7 @@ component extends="coldbox.system.resthandler" {
 	}
 
 	function studentSkills( event, rc, prc ){
+		prc.response.setData(studentService.createStudentArray( rc.keyExists( "id" ) ? rc.id : 0 ));
 	}
 
 	function displayData( event, rc, prc ){
