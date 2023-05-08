@@ -23,8 +23,8 @@ component {
 		 */
 		post( "/bump/student/:studentId/skill/:skillId", "students.bumpSkill" );
 		get( "/showNinja", "students.displayData" );
-		get( "students/skills", "students.studentSkills" );
-		get( "students/:id", "students.show" );
+		get( "/students/skills", "students.studentSkills" );
+		get( "/students/:id", "students.show" );
 		get( "/students", "students.index" );
 		get( "/skills", "skills.index" );
 		get( "/", "students.displayData" );
