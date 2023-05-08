@@ -1,6 +1,6 @@
 {
     "name":"Ninja API",
-    "version":"0.0.0",
+    "version":"0.0.1",
     "author":"Dan Card",
     "location":"ForgeboxStorage",
     "slug":"ninjaapi@dcar7191",
@@ -25,7 +25,8 @@
         "hyper":"modules/hyper/",
         "qb":"modules/qb/",
         "uime":"modules/uime/",
-        "testboxMockingUtils":"modules/testboxMockingUtils/"
+        "testboxMockingUtils":"modules/testboxMockingUtils/",
+        "cors":"modules/cors/"
     },
     "instructions":"",
     "license":[
@@ -44,7 +45,8 @@
         "commandbox-dotenv":"*",
         "commandbox-cfconfig":"*",
         "commandbox-cfformat":"*",
-        "commandbox-hostupdater":"*"
+        "commandbox-hostupdater":"*",
+        "cors":"^3.0.8"
     },
     "private":true,
     "projectURL":"",
