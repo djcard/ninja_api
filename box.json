@@ -1,10 +1,10 @@
 {
     "name":"Ninja API",
-    "version":"0.0.4",
+    "version":"0.0.5",
     "author":"Dan Card",
     "location":"ForgeboxStorage",
     "slug":"ninja_api",
-    "createPackageDirectory":false,
+    "createPackageDirectory":true,
     "type":"modules",
     "keywords":"",
     "homepage":"",
