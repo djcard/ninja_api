@@ -20,12 +20,9 @@
 <script>
 	function onLoad() {
 		for (var x = 0; x < document.styleSheets.length; x = x + 1) {
-			if (document.styleSheets[x].cssRules[0].cssText.toString().search(":root { --bs-blue:") > -1) {
-				console.dir(document.styleSheets[x]);
+			if (document.styleSheets[x].href==="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css") {
 				for(var y = 0; y< document.styleSheets[x].cssRules.length; y=y+1){
-					console.dir(y);
 					if(document.styleSheets[x].cssRules[y].selectorText===".table > :not(caption) > * > *"){
-						console.dir("deleting " + y);
 						document.styleSheets[x].deleteRule(y);
 					}
 				}
