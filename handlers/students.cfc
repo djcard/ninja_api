@@ -10,7 +10,7 @@ component extends="coldbox.system.resthandler" {
 	}
 
 	function studentSkills( event, rc, prc ){
-		prc.response.setData(studentService.studentSkills( rc.keyExists( "id" ) ? rc.id : 0 ));
+		prc.response.setData( studentService.studentSkills( rc.keyExists( "id" ) ? rc.id : 0 ) );
 	}
 
 	function displayData( event, rc, prc ){

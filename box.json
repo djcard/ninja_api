@@ -1,11 +1,11 @@
 {
     "name":"Ninja API",
-    "version":"0.0.1",
+    "version":"0.0.2",
     "author":"Dan Card",
     "location":"ForgeboxStorage",
-    "slug":"ninjaapi@dcar7191",
+    "slug":"ninja_api",
     "createPackageDirectory":false,
-    "type":"mvc",
+    "type":"modules",
     "keywords":"",
     "homepage":"",
     "documentation":"",
@@ -14,7 +14,7 @@
         "url":""
     },
     "bugs":"",
-    "shortDescription":"A sweet package",
+    "shortDescription":"A demonstration module for teaching purposes.",
     "contributors":[],
     "ignore":[],
     "description":"",
@@ -48,7 +48,7 @@
         "commandbox-hostupdater":"*",
         "cors":"^3.0.8"
     },
-    "private":true,
+    "private":false,
     "projectURL":"",
     "reinitWatchDelay":500,
     "reinitWatchDirectory":"",

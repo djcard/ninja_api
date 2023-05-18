@@ -36,7 +36,7 @@
 					<cfloop list="#getSetting("RegisteredHandlers")#" index="handler">
 						<a href="#event.buildLink( handler )#" class="list-group-item list-group-item-action d-flex gap-2 py-3" title="Run Event">
 							<div class="rounded-circle flex-shrink-0 text-success px-1">
-								<i class="bi bi-play-btn" aria-hidden="true"></i> 
+								<i class="bi bi-play-btn" aria-hidden="true"></i>
 							</div>
 							<div class="d-flex gap-2 w-100 justify-content-between">#handler#</div>
 						</a>
@@ -58,11 +58,11 @@
 					<cfloop collection="#getSetting("Modules")#" item="thisModule">
 						<a href="#event.buildLink( getModuleConfig( thisModule ).inheritedEntryPoint )#" class="list-group-item list-group-item-action d-flex gap-2 py-3" title="Run Event">
 							<div class="rounded-circle flex-shrink-0 text-success px-1">
-								<i class="bi bi-play-btn" aria-hidden="true"></i> 
+								<i class="bi bi-play-btn" aria-hidden="true"></i>
 							</div>
 							<div class="d-flex gap-2 w-100 justify-content-between">#thisModule#</div>
 						</a>
-						
+
 					</cfloop>
 				</div>
 			</div>
@@ -116,7 +116,7 @@
 
 				<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
 					<a
-						href="#getSetting( "appMapping" )#/tests/index.cfm"
+						href="#getSetting( "
 						class="btn btn-dark btn-lg"
 						role="button"
 						target="_blank"
@@ -126,7 +126,7 @@
 					</a>
 
 					<a
-						href="#getSetting( "appMapping" )#/tests/runner.cfm"
+						href="#getSetting( "
 						class="btn btn-dark btn-lg"
 						role="button"
 						target="_blank"

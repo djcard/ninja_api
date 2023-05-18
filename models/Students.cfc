@@ -4,7 +4,7 @@ component accessors="true" {
 	property name="wirebox"      inject="wirebox";
 	property name="skillService" inject="models.skills";
 	property name="hyper"        inject="HyperBuilder@Hyper";
-	property name="maxLevel" default="2";
+	property name="maxLevel"	 default="2";
 
 	function init(){
 		return this;
@@ -205,8 +205,12 @@ component accessors="true" {
 
 	function obtainBookData( isbn = "9780062196538" ){
 		return hyper
-			.setMethod( "post" )
+			.setMethod( "get" )
 			.setURL( "https://openlibrary.org/api/books?bibkeys=ISBN:#arguments.isbn#&format=json" );
+	}
+
+	function sendHyper( hyp ){
+		return hyp.send();
 	}
 
 }
