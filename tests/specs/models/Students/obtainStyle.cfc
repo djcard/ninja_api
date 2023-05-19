@@ -7,6 +7,7 @@ component extends="coldbox.system.testing.basetestcase" {
 	// executes before all suites+specs in the run() method
 	function beforeAll(){
 		super.beforeAll();
+		super.setup();
 	}
 
 	// executes after all suites+specs in the run() method
@@ -18,25 +19,32 @@ component extends="coldbox.system.testing.basetestcase" {
 	function run( testResults, testBox ){
 		// all your suites go here.
 		describe( "ObtainStyle should", function(){
-			beforeEach( function(){
-				testObj = getInstance( "students@ninja" );
-			} );
 			it( "Return `level` and whatever is submitted", function(){
 				expect( true ).tobeFalse();
+				// var testObj = getInstance( "students@ninja" );
 				// var fakeVal = randRange( 1, 1000 );
 				// var testme  = testObj.obtainStyle( fakeVal );
 				// expect( testme ).tobe( "level#fakeVal#" );
 			} );
 			it( "If a non-number is submitted, throw an error", function(){
-				expect( function(){
-					testObj.obtainStyle( {}, "A struct did not throw an exception" );
-				} ).tothrow( "expression" );
-				expect( function(){
-					testObj.obtainStyle( [], "An array did not throw an exception" );
-				} ).tothrow( "expression" );
-				$assert.throws( function(){
-					testObj.obtainStyle( "a", "A string did not throw an exception" );
-				}, "expression" );
+				expect( true ).tobeFalse();
+				// var testObj = getInstance( "students@ninja" );
+
+				// expect( function(){
+				//	testObj.obtainStyle( {} );
+				// } ).tothrow( type = "expression", message = "A struct did not throw an exception" );
+
+				// expect( function(){
+				//	testObj.obtainStyle( [] );
+				// } ).tothrow( type = "expression", message = "An array did not throw an exception" );
+
+				// $assert.throws(
+				//	target = function(){
+				//		testObj.obtainStyle( "a" );
+				//	},
+				//	type    = "expression",
+				//	message = "A string did not throw an exception"
+				// );
 			} );
 		} );
 	}

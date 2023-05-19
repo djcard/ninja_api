@@ -6,10 +6,12 @@ component extends="coldbox.system.testing.basetestcase" {
 		// super.setup();
 	}
 
-	function run(){
+	function run( testResults, testBox ){
 		describe( "CreateStudentAnalysis should", function(){
 			beforeEach( function(){
 				// fakeAccount = randRange( 1, 1000 );
+				// fakeHeaderReturn = [];
+				// fakeRowReturn = []
 
 				// fakeHeaderReturn = [ createFakeReturn() ];
 
@@ -20,7 +22,7 @@ component extends="coldbox.system.testing.basetestcase" {
 
 				// testObj = createMock( object = getinstance( "students@ninja" ) );
 				// testObj.$( method = "createHeaderRow", returns = fakeHeaderReturn );
-				// testObj.$( method = "createStudentRows", returns = [] );
+				// testObj.$( method = "createStudentRows", returns = fakeRowReturn );
 
 				// testme = testObj.createStudentArray( fakeAccount );
 			} );
@@ -42,12 +44,13 @@ component extends="coldbox.system.testing.basetestcase" {
 				//	"Called createStudentRows the wrong number of times"
 				// );
 			} );
-			it( "The first row should have the keys: contents and classes ", function(){
+			// Slide
+			it( "The first row should have the keys: contents and classes. Contents is the return from createHeaderRow and classes should be an empty string ", function(){
 				expect( true ).tobeFalse();
 				// expect( testme ).toBeTypeOf( "array", "It did not return an array" );
-				// expect( testme.len() ).tobegt( 0 );
-				// expect( testme[ 1 ] ).toBeTypeOf( "struct" );
-				// expect( testme[ 1 ] ).tohavekey( "classes" );
+				// expect( testme.len() ).tobegt( 0, "The length of the returned array was 0" );
+				// expect( testme[ 1 ] ).toBeTypeOf( "struct", "The first key was not a struct" );
+				// expect( testme[ 1 ] ).tohavekey( "classes", "There was no classes key" );
 				// expect( testme[ 1 ].classes.len() ).tobe( 0, "Classes was not empty" );
 				// expect( testme[ 1 ] ).toHaveKey( "contents", "There was no contents key" );
 				// expect( testme[ 1 ].contents ).toBeTypeOf( "array", "Contents was not an array" );
@@ -61,7 +64,7 @@ component extends="coldbox.system.testing.basetestcase" {
 				//	"Test value was not correct"
 				// );
 			} );
-			it( "if the createStudentRows returns empty, the result should have 1 row", function(){
+			it( "If the createStudentRows returns empty, the result should have 1 row", function(){
 				expect( true ).tobeFalse();
 				// testObj.$( method = "createStudentRows", returns = [] );
 				// var testme = testObj.createStudentArray( fakeAccount );
@@ -75,8 +78,8 @@ component extends="coldbox.system.testing.basetestcase" {
 			} );
 			it( "The indicies 2 through the end should correspond with values in the submitted data", function(){
 				expect( true ).tobeFalse();
-				// testObj.$( method = "createStudentRows", returns = fakeRowReturn );
 				// var testme = testObj.createStudentArray( fakeAccount );
+				// writeDump(testme);
 				// testme.each( function( item, index ){
 				//	if ( index > 1 ) {
 				//		expect( item.testValue ).tobe( fakeRowReturn[ index - 1 ].testValue );
@@ -96,7 +99,7 @@ component extends="coldbox.system.testing.basetestcase" {
 	}
 
 	function createFakeReturn(){
-		return { testValue : mockdata( $num = 1, $type = "words:5" )[ 1 ] };
+		return { "testValue" : mockdata( $num = 1, $type = "words:5" )[ 1 ] };
 	}
 
 }

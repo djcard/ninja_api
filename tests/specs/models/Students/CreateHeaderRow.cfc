@@ -23,7 +23,7 @@ component extends="coldbox.system.testing.BaseModelTest" model="ninja.models.Stu
 
 	/*********************************** BDD SUITES ***********************************/
 
-	function run(){
+	function run( testResults, testBox ){
 		describe( "CreateHeaderRow should...", function(){
 			beforeEach( function(){
 				// fakeData = mockData($num=6, name="words:1:3");

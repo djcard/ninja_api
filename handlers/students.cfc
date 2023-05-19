@@ -17,6 +17,7 @@ component extends="coldbox.system.resthandler" {
 		prc.studentData    = studentService.createStudentArray( rc.keyExists( "id" ) ? rc.id : 0 );
 		prc.tableTemplate  = getInstance( "Table@uime" );
 		prc.welcomeMessage = "Welcome to Ninja!";
+		event.setLayout( "index" );
 		event.setView( "ninja" );
 	}
 

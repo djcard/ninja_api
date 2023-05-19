@@ -67,9 +67,7 @@ component {
 
 	function configure(){
 		// parent settings
-		parentSettings = {
-			defaultEvent            : "ninja_api:Main.displayData"
-		};
+		parentSettings = { defaultEvent : "ninja_api:students.displayData" };
 
 		// module settings - stored in modules.name.settings
 		settings = {};

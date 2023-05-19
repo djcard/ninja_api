@@ -4,7 +4,7 @@ component accessors="true" {
 	property name="wirebox"      inject="wirebox";
 	property name="skillService" inject="skills@ninja";
 	property name="hyper"        inject="HyperBuilder@Hyper";
-	property name="maxLevel"	 default="2";
+	property name="maxLevel" default="6";
 
 	function init(){
 		return this;
@@ -29,23 +29,74 @@ component accessors="true" {
 	 **/
 	function createStudentArray( numeric id = 0 ){
 		var tableData   = [ { "contents" : createHeaderRow(), "classes" : "" } ];
+		// /writeDump(tableData);
 		var studentRows = createStudentRows( arguments.id );
+
 		return isNull( studentRows ) ? tableData : tableData.append( studentRows, true );
 	}
 
-
-
-
-	function obtainStudentData( id = 0 ){
-		return qb
-			.from( "students" )
-			.setGrammar( wirebox.getInstance( "SqlServerGrammar@qb" ) )
-			.when( id > 0, function( q ){
-				q.where( "id", "=", id );
-			} )
-			.get( options = { datasource : "ninja" } );
+	/***
+	 * This is here as an example of mocking queries. Obtains student information from the datbase
+	 * Would require running execute().getResult() separately.
+	 *
+	 * @id The id for a student (optional)
+	 **/
+	function obtainStudentDataORIG( numeric id = 0 ){
+		var q   = new query( datasource = "ninja" );
+		var sql = "select * from students";
+		sql     = arguments.id > 0 ? sql & " where id = :id " : sql;
+		if ( arguments.id > 0 ) {
+			q.addParam(
+				name      = "id",
+				value     = arguments.id,
+				cfsqltype = "CF_SQL_INTEGER"
+			);
+		}
+		q.setSql( sql );
+		return q;
 	}
 
+	function executeQuery( q ){
+		return q.execute().getResult();
+	}
+
+
+	/***
+	 * A QB based query with options. This is use in the actual app. If there is an error, return the JSON data
+	 *
+	 * @id The id of a student (optional)
+	 **/
+	function obtainStudentData( numeric id = 0 ){
+		try {
+			return qb
+				.from( "students" )
+				.setGrammar( wirebox.getInstance( "SqlServerGrammar@qb" ) )
+				.when( id > 0, function( q ){
+					q.where( "id", "=", id );
+				} )
+				.get( options = { datasource : "ninja" } );
+		} catch ( any err ) {
+			systemOutput( "Using JSON for Student Data" );
+			return studentDataJSON();
+		}
+	}
+
+	function studentDataJSON(){
+		return [
+			{
+				"id"        : 1,
+				"firstname" : "JSON Tracy",
+				"lastname"  : "Jones"
+			},
+			{ "id" : 2, "firstname" : "Timmy", "lastname" : "Newman" },
+			{ "id" : 3, "firstname" : "Paul", "lastname" : "Giovanni" },
+			{
+				"id"        : 4,
+				"firstname" : "Jackson",
+				"lastname"  : "Poldark"
+			}
+		];
+	}
 
 	/***
 	 * Creates the top header for the skills display table. The first column should be blank and each subsequent be the name of a skill.
@@ -72,6 +123,8 @@ component accessors="true" {
 	 **/
 	function findStudentLevel( required array skillData = studentData, string keyName = "skillLevel" ){
 		return skillData.reduce( function( currLevel, item ){
+			// writeDump(item[ keyName ]);
+			// writeDump(item[ keyName ] < currLevel ? item[ keyName ] : currLevel);
 			return item[ keyName ] < currLevel ? item[ keyName ] : currLevel;
 		}, 10 );
 	}
@@ -83,22 +136,64 @@ component accessors="true" {
 	 * @skillCode -
 	 **/
 	function studentSkills( numeric studentId = 0, string skillCode = "" ){
-		return qb
-			.setGrammar( wirebox.getInstance( "SqlServerGrammar@qb" ) )
-			.from( "studentSkill" )
-			.when( studentId > 0, function( q ){
-				q.where( "studentId", "=", studentId );
-			} )
-			.when( skillCode.len() > 0, function(){
-				q.where( "skillCode", "=", skillCode );
-			} )
-			.get( options = { datasource : "ninja" } );
+		try {
+			return qb
+				.setGrammar( wirebox.getInstance( "SqlServerGrammar@qb" ) )
+				.from( "studentSkill" )
+				.when( studentId > 0, function( q ){
+					q.where( "studentId", "=", studentId );
+				} )
+				.when( skillCode.len() > 0, function(){
+					q.where( "skillCode", "=", skillCode );
+				} )
+				.get( options = { datasource : "ninja" } );
+		} catch ( any err ) {
+			systemOutput( "Using JSON for Student Skill Data" );
+			var alldata = studentSkillJSON();
+			systemOutput( " There was an error looking for student skills" );
+			systemOutput( err );
+			if ( studentId && skillCode ) {
+				systemOutput( "returning skill skills for #arguments.studentId# and skill #arguments.skillCode#" );
+				return alldata.filter( function( item ){
+					return item.studentid == arguments.studentId && item.skillCode == arguments.skillCode;
+				} );
+			} else {
+				return allData;
+			}
+		}
 	}
+
+	function studentSkillJSON(){
+		return [
+			{
+				"studentId"  : 1,
+				"skillCode"  : "rockWall",
+				"skillLevel" : 10000
+			},
+			{
+				"studentId"  : 1,
+				"skillCode"  : "ropeClimb",
+				"skillLevel" : 1
+			},
+			{ "studentId" : 1, "skillCode" : "rings", "skillLevel" : 3 },
+			{
+				"studentId"  : 1,
+				"skillCode"  : "boxJump",
+				"skillLevel" : 4
+			},
+			{
+				"studentId"  : 1,
+				"skillCode"  : "spiderCrawl",
+				"skillLevel" : 1
+			},
+			{ "studentId" : 1, "skillCode" : "vault", "skillLevel" : 5 }
+		];
+	}
+
 
 	function createStudentSkillDictionary(){
 		var returnMe    = {};
 		var studentdata = studentSkills();
-
 		studentData.each( function( item ){
 			returnMe[ item.studentId.toString() ] = returnMe.keyExists( item.studentId.toString() ) ? returnMe[
 				item.studentId.toString()
@@ -155,12 +250,12 @@ component accessors="true" {
 				);
 			} );
 
-			var totalLevel = findStudentLevel( studentBase.contents, "contents" );
+			var totalLevel = validateStudentLevel( findStudentLevel( studentBase.contents, "contents" ) );
 			studentBase.contents.append( {
 				"contents" : totalLevel,
 				"header"   : false,
 				"classes"  : obtainStyle( totalLevel )
-			} )
+			} );
 			// Append the "row" to the returnMe array
 			returnMe.append( studentBase, true );
 		} );
@@ -211,6 +306,10 @@ component accessors="true" {
 
 	function sendHyper( hyp ){
 		return hyp.send();
+	}
+
+	function validateStudentLevel( required numeric level ){
+		return level <= maxLevel ? level : 0;
 	}
 
 }

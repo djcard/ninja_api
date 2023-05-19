@@ -4,7 +4,7 @@ component extends="coldbox.system.testing.basetestcase" {
 		super.beforeAll();
 	}
 
-	function run(){
+	function run( testResults, testBox ){
 		describe( "CreateStudentRows should", function(){
 			beforeEach( function(){
 				fakeStudentData = [];
