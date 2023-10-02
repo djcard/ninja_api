@@ -14,5 +14,6 @@ The site will open at `http://ninjaapi.local` on port 80.
 
 
 ChangeLog:
+0.0.2 - Added Task.cfc for post install tasks
 0.0.1 - added cors dependency
 0.0.0 - initial commit
